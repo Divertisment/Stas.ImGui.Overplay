@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="WSL-Debug" />
+  </Configurations>
+  <Project Path="../OverlayImg/OverlayImg.csproj">
+    <BuildType Solution="WSL-Debug|*" Project="Debug" />
+  </Project>
+  <Project Path="Stas.ImGui.Overplay.csproj" />
+</Solution>

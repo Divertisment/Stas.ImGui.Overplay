@@ -1,0 +1,17 @@
+<Project>
+  <!-- [R154] CIFS-гонка WriteCodeFragment: AssemblyInfo.cs перезаписывается каждый
+       билд (хэш в AssemblyInfoInputs.cache не совпадает), Roslyn читает обрезанную
+       версию -> CS1010/CS1026/CS1003 в obj\Debug\*.AssemblyInfo.cs(21,...).
+       Лечение как в OverlayImg (R152): obj на ext4. ТОЛЬКО Linux: на Windows
+       '/tmp/...' не абсолютный -> VS/Roslyn InvalidProjectDataException. -->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <BaseIntermediateOutputPath>/tmp/cto_obj/</BaseIntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT' And '$(Configuration)' == 'Debug'">
+    <IntermediateOutputPath>/tmp/cto_obj/Debug/</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT' And '$(Configuration)' == 'Release'">
+    <IntermediateOutputPath>/tmp/cto_obj/Release/</IntermediateOutputPath>
+  </PropertyGroup>
+</Project>

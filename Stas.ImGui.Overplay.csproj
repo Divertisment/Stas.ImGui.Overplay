@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWin32Manifest>true</NoWin32Manifest>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<Description>A library to create transparent overlays on the windows machines.</Description>
+
+		<PublishAot>true</PublishAot>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Configurations>Debug;Release;WSL-Debug</Configurations>
+	</PropertyGroup>
+
+	<!-- Настройки сборки для отладки (Debug) -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>$(SolutionDir)bin\</OutputPath>
+		<Optimize>False</Optimize>
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<IncludeSymbols>true</IncludeSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WSL-Debug|AnyCPU'">
+		<OutputPath>$(SolutionDir)bin\</OutputPath>
+		<Optimize>False</Optimize>
+	</PropertyGroup>
+
+	<!-- УЛЬТРА-ЗАЩИЩЕННЫЕ настройки для финальной сборки (Release) под VMProtect -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>$(SolutionDir)bin\</OutputPath>
+
+		<!-- 3. ПОЛНОЕ УДАЛЕНИЕ СИМВОЛОВ: Запрещаем создание .pdb файлов для библиотеки, скрывая внутреннюю структуру классов -->
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<IncludeSymbols>false</IncludeSymbols>
+		<SymbolPackageFormat></SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Hexa.NET.ImGui" Version="2.2.9" />
+		<PackageReference Include="StbImageSharp" Version="2.30.16" />
+		<PackageReference Include="Vortice.D3DCompiler" Version="3.8.3" />
+		<PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\OverlayImg\OverlayImg.csproj" />
+	</ItemGroup>
+
+
+	<!-- [fix] Сгенерированные MSBuild-файлы (AssemblyInfo/AssemblyAttributes/GlobalUsings)
+	     не должны попадать в **/*.cs: obj\<cfg>\*.cs (из-за AppendTargetFrameworkToOutputPath=false)
+	     и obj-linux\ дублируют obj\<cfg>\net10.0\*.cs -> CS0579 Duplicate attribute
+	     и пропавший obj\Debug\ref\*.dll. -->
+	<ItemGroup>
+		<Compile Remove="obj/**/*.cs;obj-linux/**/*.cs;bin/**/*.cs" />
+	</ItemGroup>
+
+</Project>

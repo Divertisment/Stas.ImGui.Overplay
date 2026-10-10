@@ -1,4 +1,4 @@
-﻿namespace ClickableTransparentOverlay;
+namespace Stas.ImGui.Overplay;
 
 using OverlayImg;
 using Hexa.NET.ImGui;

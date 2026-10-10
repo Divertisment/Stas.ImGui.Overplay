@@ -1,9 +1,9 @@
-﻿
-using ClickableTransparentOverlay.Win32;
+
+using Stas.ImGui.Overplay.Win32;
 using System.Runtime.InteropServices;
 using System;
 
-namespace ClickableTransparentOverlay {
+namespace Stas.ImGui.Overplay {
     public abstract partial class Overlay  {
         public nint OverlayPtr => this.window == null ? default : this.window.Handle;
         const int GWL_EXSTYLE = -20;

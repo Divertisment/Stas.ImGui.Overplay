@@ -1,4 +1,4 @@
-﻿namespace ClickableTransparentOverlay
+namespace Stas.ImGui.Overplay
 {
     using System;
     using System.Threading;

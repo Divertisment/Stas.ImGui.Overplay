@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Vortice.Direct3D11;
 using Vortice.DXGI;
 using Vortice.Direct3D;
 using OverlayImg;
-namespace ClickableTransparentOverlay;
+namespace Stas.ImGui.Overplay;
 
 
 public partial class Overlay {

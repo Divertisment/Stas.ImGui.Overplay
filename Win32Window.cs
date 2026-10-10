@@ -1,6 +1,6 @@
-﻿namespace ClickableTransparentOverlay
+namespace Stas.ImGui.Overplay
 {
-    using ClickableTransparentOverlay.Win32;
+    using Stas.ImGui.Overplay.Win32;
     using System;
     using System.Drawing;
 

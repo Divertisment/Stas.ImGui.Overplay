@@ -46,11 +46,8 @@
 		<PackageReference Include="StbImageSharp" Version="2.30.16" />
 		<PackageReference Include="Vortice.D3DCompiler" Version="3.8.3" />
 		<PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\OverlayImg\OverlayImg.csproj" />
+		<PackageReference Include="StbImageSharp" Version="2.30.16" />
+		<PackageReference Include="StbImageWriteSharp" Version="1.16.7" />
 	</ItemGroup>
 
 

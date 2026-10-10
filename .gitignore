@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Project Win32 P/Invoke sources (the [Ww][Ii][Nn]32/ rule above is for build output)
+!Win32/

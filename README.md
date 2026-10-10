@@ -27,7 +27,7 @@ working.
 ## Requirements
 
 - .NET 10
-- Windows
+- Windows, Linux, AOT
 
 ## Credits
 

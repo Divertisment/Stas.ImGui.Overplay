@@ -392,8 +392,10 @@ public abstract partial class Overlay : IDisposable {
             width = (uint)image.Width;
             height = (uint)image.Height;
 
-            // Не забудь добавить новую текстуру в словарь loadedTexturesPtrs, если это было в оригинале:
-            // this.loadedTexturesPtrs[filePath] = new TextureData(handle, width, height);
+            // [R155] Кэшируем текстуру по пути к файлу. Без кэша: каждый вызов
+            // перечитывал файл с диска и создавал новую текстуру (старая не освобождалась),
+            // а также увеличивалась вероятность конфликта с записью map.png.
+            this.loadedTexturesPtrs[filePath] = new(handle, width, height);
         }
     }
 
